@@ -1,6 +1,10 @@
-from PyQt5.QtQuick import QQuickView
-from PyQt5.QtQml import QQmlComponent
+# -*- coding: utf-8 -*-
 
+from PyQt5.QtQuick import QQuickView
+
+__author__ = "Paul Blottiere"
+__date__ = "July 2019"
+__copyright__ = "Copyright (C) 2019 Paul Blottiere"
 
 QML = b"""
 import QtCharts 2.0
@@ -147,7 +151,6 @@ view.rootContext().setContextProperty("pie", pie)
 view.setSource(QUrl.fromLocalFile(qml.fileName()))
 
 container = QWidget.createWindowContainer(view)
-
 widget = QDockWidget()
 widget.setWidget(container)
 
