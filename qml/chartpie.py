@@ -12,6 +12,7 @@ import QtQuick 2.0
 
 ChartView {
   title: pie.title
+  antialiasing: true
   legend.visible: false
 
   PieSeries {
@@ -143,15 +144,20 @@ qml.write(QML)
 qml.close()
 
 layer = iface.activeLayer()
-pie = ChartPie(layer)
 
-view = QQuickView()
-view.setResizeMode(QQuickView.SizeRootObjectToView)
-view.rootContext().setContextProperty("pie", pie)
-view.setSource(QUrl.fromLocalFile(qml.fileName()))
+if layer and layer.renderer().type() == "RuleRenderer":
+    pie = ChartPie(layer)
 
-container = QWidget.createWindowContainer(view)
-widget = QDockWidget()
-widget.setWidget(container)
+    view = QQuickView()
+    view.setResizeMode(QQuickView.SizeRootObjectToView)
+    view.rootContext().setContextProperty("pie", pie)
+    view.setSource(QUrl.fromLocalFile(qml.fileName()))
 
-iface.addDockWidget(Qt.LeftDockWidgetArea, widget)
+    container = QWidget.createWindowContainer(view)
+    widget = QDockWidget()
+    widget.setMinimumHeight(300)
+    widget.setWidget(container)
+
+    iface.addDockWidget(Qt.LeftDockWidgetArea, widget)
+else:
+    print("Invalid layer")
