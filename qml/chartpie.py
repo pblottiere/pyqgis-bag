@@ -138,14 +138,14 @@ class ChartPie(QObject):
             self._layer.selectByIds(features)
 
 
-qml = QTemporaryFile()
-qml.open()
-qml.write(QML)
-qml.close()
-
 layer = iface.activeLayer()
 
 if layer and layer.renderer().type() == "RuleRenderer":
+    qml = QTemporaryFile()
+    qml.open()
+    qml.write(QML)
+    qml.close()
+
     pie = ChartPie(layer)
 
     view = QQuickView()
