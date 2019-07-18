@@ -58,7 +58,7 @@ ChartView {
   Connections {
     target: pie
     onUpdated: {
-      initSlices()
+      addSlices()
     }
   }
 }
@@ -70,7 +70,7 @@ class ChartPie(QObject):
     updated = QtCore.pyqtSignal()
 
     def __init__(self, layer):
-        super(PyPie, self).__init__()
+        super().__init__()
         self._layer = layer
         self._slices = {}
         self.initSlices()
@@ -132,6 +132,10 @@ class ChartPie(QObject):
 
             self._layer.selectByIds(features)
 
+qml = QTemporaryFile()
+qml.open()
+qml.write(QML)
+qml.close()
 
 layer = iface.activeLayer()
 pie = ChartPie(layer)
@@ -139,9 +143,7 @@ pie = ChartPie(layer)
 view = QQuickView()
 view.setResizeMode(QQuickView.SizeRootObjectToView)
 view.rootContext().setContextProperty("pie", pie)
-
-component = QQmlComponent(view.engine())
-component.setData(QML, QUrl())
+view.setSource(QUrl.fromLocalFile(qml.fileName()))
 
 container = QWidget.createWindowContainer(view)
 
