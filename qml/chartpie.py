@@ -83,7 +83,7 @@ class ChartPie(QObject):
 
         renderer = self._layer.renderer()
         for item in renderer.legendSymbolItems():
-            if not renderer.legendSymbolItemChecked( item.ruleKey() ):
+            if not renderer.legendSymbolItemChecked(item.ruleKey()):
                 continue
 
             count = self._layer.featureCount(item.ruleKey())
@@ -91,7 +91,7 @@ class ChartPie(QObject):
 
         self._slices = slices
 
-    @QtCore.pyqtSlot(str, result='QColor')
+    @QtCore.pyqtSlot(str, result="QColor")
     def labelColor(self, label):
         renderer = self._layer.renderer()
 
@@ -107,7 +107,7 @@ class ChartPie(QObject):
     def title(self):
         return self._layer.name()
 
-    @QtCore.pyqtProperty('QVariantMap')
+    @QtCore.pyqtProperty("QVariantMap")
     def slices(self):
         return self._slices
 
@@ -131,6 +131,7 @@ class ChartPie(QObject):
                 features.append(f.id())
 
             self._layer.selectByIds(features)
+
 
 qml = QTemporaryFile()
 qml.open()
