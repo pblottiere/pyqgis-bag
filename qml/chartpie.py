@@ -43,10 +43,10 @@ ChartView {
 
     array.sort(function(a, b) {
       return b[1]-a[1]
-    });
+    })
 
     var dict = {}
-    for ( const index in array ) {
+    for ( var index in array ) {
         const item = array[index]
         dict[item[0]] = item[1]
     }
