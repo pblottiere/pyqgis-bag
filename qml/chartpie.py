@@ -45,14 +45,18 @@ ChartView {
       return b[1]-a[1]
     });
 
-    return array
+    var dict = {}
+    for ( const index in array ) {
+        const item = array[index]
+        dict[item[0]] = item[1]
+    }
+
+    return dict
   }
 
   function addSlices() {
     pieChartId.clear()
-    var sorted = sortValues(pie.slices)
-    var slices = {}
-    sorted.forEach(([key, value]) => slices[key] = value)
+    const slices = sortValues(pie.slices)
 
     for (var name in slices) {
       var slice = pieChartId.append(name, slices[name])
