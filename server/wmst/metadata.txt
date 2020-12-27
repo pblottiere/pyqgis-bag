@@ -1,0 +1,24 @@
+[general]
+name=WMST
+qgisMinimumVersion=3
+description=This is a test plugin for the QGIS MapServer
+version=version 1.2
+author=Paul Blottiere
+email=blottiere.paul@gmail.com
+; if True it's a server plugin
+server=True
+
+changelog=
+
+
+tags=raster,time
+
+tracker=
+homepage=
+repository=
+
+category=server
+
+experimental=True
+
+about=Add a TIME dimension to raster
